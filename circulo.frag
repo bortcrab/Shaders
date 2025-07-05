@@ -18,7 +18,7 @@ void main(){
     
     // Para que se vea un poco más grande el vacío, le restamos 0.5.
     pixelDistance -= .5;
-    
+
     /*
     Como en el paso anterior le restamos a todos los valores, en el centro
     ahora tenemos valores negativos. Si aplicamos la transformada de Fourier...
@@ -27,8 +27,26 @@ void main(){
     como un halo o un circulito.
     */
     pixelDistance = abs(pixelDistance);
+
+    /*
+    La función step() es como las funciones discontinuas de las matemáticas ksjjsa.
+    Lo que hace es que toma dos valores; el primero es el límite a tomar en cuenta,
+    y el segundo es la x a evaluar. Si dicha x es menor al límite, la función
+    devuelve 0. Por el contrario, si la x es mayor al límite, devuelve 1. Esto resulta
+    en un circulo con un borde TOTALMENTE negro, sin gradientes ni nada.
+    */
+    //pixelDistance = step(0.02, pixelDistance);
+
+    /*
+    smoothstep() es la evolución de step(). Ahora esta toma dos límites. El primero
+    es para definir los valores que se convertirán en 0. El segundo es para lo contrario;
+    sirve para decir cuáles son los que se convertirán en 1. A todo valor que quede dentro
+    del rango (>0.0 y <0.1) se le aplicará una interpolación o suavizamiento.
+    */
+    pixelDistance = smoothstep(0.0, 0.1, pixelDistance);
+
     float d = pixelDistance; // Esto es para simplicidad en el gl_FragColor.
-    
+
     // Es la variable estandar para el output en pantalla.
     /*
     Aquí es vec4() porque rgba. Y como esto se ejecuta por cada pixel, la
@@ -36,5 +54,5 @@ void main(){
     ponemos en cada argumento de los colores, obtendremos un gradiente de
     blanco, gris y negro.
     */
-    gl_FragColor=vec4(d,d,d,1.);
+    gl_FragColor = vec4(d, d, d, 1.0);
 }
