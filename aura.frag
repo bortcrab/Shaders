@@ -17,7 +17,7 @@ void main(){
     float pixelDistance = length(uv);
     
     // Para que se vea un poco más grande el vacío, le restamos 0.5.
-    pixelDistance -= .5;
+    pixelDistance -= 0.5;
     
     /*
     Como en el paso anterior le restamos a todos los valores, en el centro
