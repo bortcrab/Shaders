@@ -7,10 +7,10 @@ uniform float u_time;
 
 // Función para generar una paleta de colores basada en un valor t entre 0 y 1.
 vec3 palette( float t ) {
-    vec3 a = vec3(0.9333, 0.6275, 0.9608);
-    vec3 b = vec3(0.8314, 0.3804, 0.3804);
-    vec3 c = vec3(0.5216, 0.3765, 0.7529);
-    vec3 d = vec3(0.1882, 0.5412, 0.9451);
+    vec3 a = vec3(0.5, 0.5, 0.5);
+    vec3 b = vec3(0.5, 0.5, 0.5);
+    vec3 c = vec3(0.2745, 0.0078, 0.0078);
+    vec3 d = vec3(0.7569, 0.1804, 0.9882);
 
     return a + b*cos( 6.28318*(c*t+d) );
 }
@@ -81,4 +81,3 @@ void main(){
     gl_FragColor = vec4(col, 1.0);
     // gl_FragColor es la variable estandar para el output en pantalla.
 }
-
